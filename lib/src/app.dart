@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:study_app/src/screens/home.dart';
 import 'package:study_app/src/screens/list.dart';
 import 'package:study_app/src/screens/loadmap.dart';
+import 'package:study_app/src/screens/login.dart';
 import 'package:study_app/src/screens/settings.dart';
+import 'package:study_app/src/screens/splash.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,10 +13,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
-      home: MyStatefulWidget(),
+      routes: {
+        "/": (context) => const SplashScreen(),
+        "/login": (context) => const LoginScreen(),
+        "/main": (context) => const MyStatefulWidget()
+      },
+      // home: MyStatefulWidget(),
     );
   }
 }
@@ -33,7 +40,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     LoadmapScreeen(),
     SettingsScreeen()
   ];
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
+  // int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -56,8 +64,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: "科目",
-            tooltip: "科目ページ",
+            label: "教科",
+            tooltip: "教科ページ",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),

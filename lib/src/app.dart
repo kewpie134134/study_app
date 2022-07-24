@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_app/src/screens/home.dart';
+import 'package:study_app/src/screens/list.dart';
 import 'package:study_app/src/screens/loadmap.dart';
 import 'package:study_app/src/screens/settings.dart';
 
@@ -26,7 +27,12 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  static const _screens = [HomeScreeen(), LoadmapScreeen(), SettingsScreeen()];
+  static const _screens = [
+    HomeScreeen(),
+    ListScreeen(),
+    LoadmapScreeen(),
+    SettingsScreeen()
+  ];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -34,27 +40,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       _selectedIndex = index;
     });
   }
-
-  static final bottomItems = <BottomNavigationBarItem>[
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      activeIcon: Icon(Icons.home),
-      label: "ホーム",
-      tooltip: "ホームページ",
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.map),
-      activeIcon: Icon(Icons.map),
-      label: "ロードマップ",
-      tooltip: "ロードマップページ",
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      activeIcon: Icon(Icons.settings),
-      label: '設定',
-      tooltip: "設定ページ",
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,19 +51,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            activeIcon: Icon(Icons.home),
             label: "ホーム",
             tooltip: "ホームページ",
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: "科目",
+            tooltip: "科目ページ",
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            activeIcon: Icon(Icons.map),
             label: "ロードマップ",
             tooltip: "ロードマップページ",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            activeIcon: Icon(Icons.settings),
             label: '設定',
             tooltip: "設定ページ",
           ),

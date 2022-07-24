@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:study_app/src/screens/unit.dart';
 
-class SubjectScreeen extends StatelessWidget {
-  const SubjectScreeen({Key? key}) : super(key: key);
+class UnitScreen extends StatelessWidget {
+  const UnitScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("教科選択")),
+        appBar: AppBar(title: const Text("単元選択")),
         body: Column(
           children: <Widget>[
-            const Text('勉強したい教科を選んでね。'),
+            const Text('勉強したい単元を選んでね。'),
             Container(
               padding: const EdgeInsets.only(top: 32),
             ),
@@ -18,13 +17,8 @@ class SubjectScreeen extends StatelessWidget {
               width: double.infinity, //横幅
               height: 50, //高さ
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const UnitScreen();
-                  }));
-                },
-                child: const Text('国語'),
+                onPressed: () {},
+                child: const Text('XXXXXX'),
               ),
             ),
             Container(
@@ -35,7 +29,7 @@ class SubjectScreeen extends StatelessWidget {
               height: 50, //高さ
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text('数学'),
+                child: const Text('XXXXXX'),
               ),
             ),
             Container(
@@ -46,7 +40,7 @@ class SubjectScreeen extends StatelessWidget {
               height: 50, //高さ
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text('英語'),
+                child: const Text('XXXXXX'),
               ),
             ),
             Container(
@@ -57,7 +51,7 @@ class SubjectScreeen extends StatelessWidget {
               height: 50, //高さ
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text('理科'),
+                child: const Text('XXXXXX'),
               ),
             ),
             Container(
@@ -68,7 +62,7 @@ class SubjectScreeen extends StatelessWidget {
               height: 50, //高さ
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text('社会'),
+                child: const Text('XXXXXX'),
               ),
             ),
           ],

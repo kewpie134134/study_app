@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ListScreeen extends StatelessWidget {
-  const ListScreeen({Key? key}) : super(key: key);
+class SubjectScreeen extends StatelessWidget {
+  const SubjectScreeen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("教科")),
+        appBar: AppBar(title: const Text("教科選択")),
         body: Column(
           children: <Widget>[
-            const Text('勉強したい教科を選択してください。'),
+            const Text('勉強したい教科を選んでね。'),
             Container(
               padding: const EdgeInsets.only(top: 32),
             ),
@@ -17,7 +17,9 @@ class ListScreeen extends StatelessWidget {
               width: double.infinity, //横幅
               height: 50, //高さ
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/unit");
+                },
                 child: const Text('国語'),
               ),
             ),

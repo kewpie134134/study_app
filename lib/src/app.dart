@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_app/src/screens/home.dart';
-import 'package:study_app/src/screens/list.dart';
+import 'package:study_app/src/screens/subject.dart';
 import 'package:study_app/src/screens/loadmap.dart';
 import 'package:study_app/src/screens/login.dart';
 import 'package:study_app/src/screens/settings.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const SplashScreen(),
         "/login": (context) => const LoginScreen(),
-        "/main": (context) => const MyStatefulWidget()
+        "/main": (context) => const MyStatefulWidget(),
       },
       // home: MyStatefulWidget(),
     );
@@ -36,7 +36,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const _screens = [
     HomeScreeen(),
-    ListScreeen(),
+    SubjectScreeen(),
     LoadmapScreeen(),
     SettingsScreeen()
   ];

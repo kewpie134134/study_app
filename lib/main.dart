@@ -1,67 +1,85 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const String _title = "Study App";
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: _title,
+      home: MyStatefulWidget(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
+  void _onItemTapped(int index) {
     setState(() {
-      _counter++;
+      _selectedIndex = index;
     });
   }
+
+  static final bottomItems = <BottomNavigationBarItem>[
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      activeIcon: Icon(Icons.home),
+      label: "ホーム",
+      tooltip: "ホームページ",
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.map),
+      activeIcon: Icon(Icons.map),
+      label: "ロードマップ",
+      tooltip: "ロードマップページ",
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      activeIcon: Icon(Icons.settings),
+      label: '設定',
+      tooltip: "設定ページ",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text("Study Application"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        child: Text(
+          bottomItems[_selectedIndex].label ?? "",
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: bottomItems,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.blue,
+        enableFeedback: true,
+        iconSize: 18,
+        selectedFontSize: 20,
+        selectedIconTheme: const IconThemeData(size: 30, color: Colors.white),
+        selectedItemColor: Colors.white,
+        unselectedFontSize: 15,
+        unselectedIconTheme: const IconThemeData(size: 25, color: Colors.black),
+        unselectedItemColor: Colors.black,
       ),
     );
   }

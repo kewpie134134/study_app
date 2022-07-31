@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:study_app/src/screens/home.dart';
 import 'package:study_app/src/screens/subject.dart';
@@ -34,12 +35,6 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  static const _screens = [
-    HomeScreeen(),
-    SubjectScreeen(),
-    LoadmapScreeen(),
-    SettingsScreeen()
-  ];
   int _selectedIndex = 1;
   // int _selectedIndex = 0;
 
@@ -51,35 +46,58 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "ホーム",
-            tooltip: "ホームページ",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: "教科",
-            tooltip: "教科ページ",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: "ロードマップ",
-            tooltip: "ロードマップページ",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '設定',
-            tooltip: "設定ページ",
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-      ),
-    );
+    return CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "ホーム",
+              tooltip: "ホームページ",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: "教科",
+              tooltip: "教科ページ",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+              label: "ロードマップ",
+              tooltip: "ロードマップページ",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: '設定',
+              tooltip: "設定ページ",
+            ),
+          ],
+          onTap: _onItemTapped, // 無くても動く
+          currentIndex: _selectedIndex, // 無くても動く
+        ),
+        tabBuilder: (BuildContext context, int index) {
+          return CupertinoTabView(builder: (context) {
+            switch (index) {
+              case 0:
+                return const CupertinoPageScaffold(
+                  child: HomeScreeen(),
+                );
+              case 1:
+                return const CupertinoPageScaffold(
+                  child: SubjectScreeen(),
+                );
+              case 2:
+                return const CupertinoPageScaffold(
+                  child: LoadmapScreeen(),
+                );
+              case 3:
+                return const CupertinoPageScaffold(
+                  child: SettingsScreeen(),
+                );
+              default:
+                return const CupertinoPageScaffold(
+                  child: HomeScreeen(),
+                );
+            }
+          });
+        });
   }
 }

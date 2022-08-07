@@ -12,15 +12,35 @@ List<Widget> _makeWidgets(
   for (final list in itemList) {
     var tmpWidgets = <Widget>[];
     for (int i = 0; i < list.length; i++) {
-      tmpWidgets.add(Container(
-          decoration:
-              const BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-          width: containerSize,
-          height: containerSize));
-      tmpWidgets.add(Icon(
-        Icons.arrow_forward,
-        size: containerSize,
-      ));
+      if (list[i] == loadmapLength + 1) {
+        /// Goal の場合、コンテンツの色を変えて矢印は追加しない
+        tmpWidgets.add(Container(
+            decoration:
+                const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+            width: containerSize,
+            height: containerSize));
+      } else if (list[i] == 0) {
+        /// STart の場合、コンテンツの色を変えて矢印は追加しない
+        tmpWidgets.add(Container(
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: Colors.green),
+            width: containerSize,
+            height: containerSize));
+        tmpWidgets.add(Icon(
+          Icons.arrow_forward,
+          size: containerSize,
+        ));
+      } else {
+        tmpWidgets.add(Container(
+            decoration:
+                const BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+            width: containerSize,
+            height: containerSize));
+        tmpWidgets.add(Icon(
+          Icons.arrow_forward,
+          size: containerSize,
+        ));
+      }
     }
     contentWidgets.add(Row(children: tmpWidgets));
     contentWidgets.add(Icon(

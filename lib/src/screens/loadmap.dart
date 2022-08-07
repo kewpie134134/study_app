@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const int loadmapLength = 23;
+const int loadmapLength = 5;
 
 List<Widget> _makeWidgets(
     BuildContext context, List newList, double containerSize) {
@@ -30,11 +30,13 @@ List<Widget> _makeWidgets(
 }
 
 List<dynamic> loadmapList(int loadmapLength) {
-  var reversedList =
-      (List.generate(loadmapLength + 2, (i) => i).reversed.toList());
+  int loadmapFullLength = loadmapLength + 2;
   var newList = [];
+
+  var reversedList =
+      (List.generate(loadmapFullLength, (i) => i).reversed.toList());
   var loopIndex = 0;
-  for (int i = 0; i < (loadmapLength + 2) / 5; i++) {
+  for (int i = 0; i < (loadmapFullLength) / 5; i++) {
     if (reversedList.length > loopIndex + 5) {
       newList.add(reversedList.sublist(loopIndex, loopIndex + 5));
       loopIndex += 5;

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-const int loadmapLength = 5;
+/// ロードマップの要素数
+const int loadmapLength = 23;
 
+/// 繰り返されるウィジェットを用意する
 List<Widget> _makeWidgets(
-    BuildContext context, List newList, double containerSize) {
+    BuildContext context, List itemList, double containerSize) {
   var contentWidgets = <Widget>[];
 
   contentWidgets.add(const Text("ロードマップ"));
-  for (final list in newList) {
+  for (final list in itemList) {
     var tmpWidgets = <Widget>[];
     for (int i = 0; i < list.length; i++) {
       tmpWidgets.add(Container(
@@ -29,25 +31,27 @@ List<Widget> _makeWidgets(
   return contentWidgets;
 }
 
+/// コンテンツの数に応じて表示するロードマップの並びを作成
+/// Start と Goal のロードマップもここで含める
 List<dynamic> loadmapList(int loadmapLength) {
   int loadmapFullLength = loadmapLength + 2;
-  var newList = [];
+  var itemList = [];
 
   var reversedList =
       (List.generate(loadmapFullLength, (i) => i).reversed.toList());
   var loopIndex = 0;
   for (int i = 0; i < (loadmapFullLength) / 5; i++) {
     if (reversedList.length > loopIndex + 5) {
-      newList.add(reversedList.sublist(loopIndex, loopIndex + 5));
+      itemList.add(reversedList.sublist(loopIndex, loopIndex + 5));
       loopIndex += 5;
     } else {
-      newList.add(reversedList.sublist(loopIndex));
+      itemList.add(reversedList.sublist(loopIndex));
     }
     if (i % 2 == 0) {
-      newList[i].sort();
+      itemList[i].sort();
     }
   }
-  return newList;
+  return itemList;
 }
 
 class LoadmapScreeen extends StatelessWidget {
@@ -56,6 +60,8 @@ class LoadmapScreeen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
+    /// 表示されるコンテンツの大きさ（画面サイズに応じて調整）
     final double containerSize = size.width / 10;
 
     return Scaffold(

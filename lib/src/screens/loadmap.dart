@@ -20,7 +20,7 @@ List<Widget> _makeWidgets(
             width: containerSize,
             height: containerSize));
       } else if (list[i] == 0) {
-        /// STart の場合、コンテンツの色を変えて矢印は追加しない
+        /// Start の場合、コンテンツの色を変えて矢印は追加しない
         tmpWidgets.add(Container(
             decoration: const BoxDecoration(
                 shape: BoxShape.circle, color: Colors.green),

@@ -36,7 +36,7 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 3;
   // int _selectedIndex = 0;
 
   void _onItemTapped(int index) {

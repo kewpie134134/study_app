@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:study_app/src/screens/game.dart';
 import 'package:study_app/src/screens/home.dart';
 import 'package:study_app/src/screens/subject.dart';
 import 'package:study_app/src/screens/loadmap.dart';
@@ -65,6 +66,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               tooltip: "ロードマップページ",
             ),
             BottomNavigationBarItem(
+                icon: Icon(Icons.sports_esports),
+                label: "ミニゲーム",
+                tooltip: "ミニゲームページ"),
+            BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: '設定',
               tooltip: "設定ページ",
@@ -77,22 +82,32 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           return CupertinoTabView(builder: (context) {
             switch (index) {
               case 0:
+                // ホームページ
                 return const CupertinoPageScaffold(
                   child: HomeScreeen(),
                 );
               case 1:
+                // 教科ページ
                 return const CupertinoPageScaffold(
                   child: SubjectScreeen(),
                 );
               case 2:
+                // ロードマップページ
                 return const CupertinoPageScaffold(
                   child: LoadmapScreeen(),
                 );
               case 3:
+                // ミニゲームページ
+                return const CupertinoPageScaffold(
+                  child: GameScreeen(),
+                );
+              case 4:
+                // 設定ページ
                 return const CupertinoPageScaffold(
                   child: SettingsScreeen(),
                 );
               default:
+                // デフォルトはホームページ
                 return const CupertinoPageScaffold(
                   child: HomeScreeen(),
                 );

@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
+      initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
         "/login": (context) => const LoginScreen(),
         "/main": (context) => const MyStatefulWidget(),
       },
-      // home: MyStatefulWidget(),
     );
   }
 }

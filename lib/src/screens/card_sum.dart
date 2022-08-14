@@ -7,8 +7,8 @@ class CardSumScreeen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("トランプ足し合わせゲーム")),
-      body: const Center(
-        child: Text("トランプ足し合わせゲーム画面", style: TextStyle(fontSize: 32.0)),
+      body: Center(
+        child: Image.asset('images/trumps/card_-.png'),
       ),
     );
   }

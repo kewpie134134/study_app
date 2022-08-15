@@ -75,7 +75,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             tooltip: "ロードマップページ",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
+            icon: Icon(Icons.sports_esports),
             label: "ミニゲーム",
             tooltip: "ミニゲームページ",
           ),

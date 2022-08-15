@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:study_app/src/utils/trumps.dart';
 
-class CardSumScreeen extends StatelessWidget {
+class CardSumScreeen extends StatefulWidget {
   const CardSumScreeen({Key? key}) : super(key: key);
+
+  @override
+  State<CardSumScreeen> createState() => _CardSumScreenState();
+}
+
+class _CardSumScreenState extends State<CardSumScreeen> {
+  int counter = 0;
+  var check = 0;
+
+  void _onPressed() {
+    counter += 1;
+    setState(() {
+      // counter = counter;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +26,12 @@ class CardSumScreeen extends StatelessWidget {
         body: Center(
           child: Column(
             children: <Widget>[
-              Image.asset('images/trumps/card_-.png'),
-              ElevatedButton(onPressed: () {}, child: const Text("ゲームスタート")),
+              Image.asset(allTrumpsMarks[counter]),
+              ElevatedButton(
+                  onPressed: () {
+                    _onPressed();
+                  },
+                  child: const Text("ゲームスタート")),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

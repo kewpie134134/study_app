@@ -10,12 +10,12 @@ class CardSumScreeen extends StatefulWidget {
 
 class _CardSumScreenState extends State<CardSumScreeen> {
   int counter = 0;
-  var check = 0;
+  int sum = 0;
 
-  void _onPressed() {
-    counter += 1;
+  void _onPressed(String path) {
     setState(() {
-      // counter = counter;
+      counter += 1;
+      sum += allTrumps[path] as int;
     });
   }
 
@@ -26,12 +26,16 @@ class _CardSumScreenState extends State<CardSumScreeen> {
         body: Center(
           child: Column(
             children: <Widget>[
-              Image.asset(allTrumpsMarks[counter]),
-              ElevatedButton(
-                  onPressed: () {
-                    _onPressed();
-                  },
-                  child: const Text("ゲームスタート")),
+              Image.asset(randomAllTrumpMarks[counter]),
+              counter < randomAllTrumpMarks.length - 1
+                  // トランプの配列が 52 枚まで達していないとき
+                  ? ElevatedButton(
+                      onPressed: () {
+                        _onPressed(randomAllTrumpMarks[counter]);
+                      },
+                      child: const Text("ゲームスタート"))
+                  // トランプの枚数が 52 枚に達したとき
+                  : ElevatedButton(onPressed: () {}, child: const Text("終了！！")),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

@@ -1,4 +1,14 @@
-const spadeTrumps = {
+import 'dart:math';
+
+// 裏面カードを含むすべてのトランプマークの配列
+List randomAllTrumpMarks =
+    _addMapKeysToList(_randomAllTrumpMarksExceptBack, _backTrumps);
+
+// 裏面カードを含むすべてのトランプマークの配列
+Map allTrumps = {..._allTrumpsExceptBack, ..._backTrumps};
+
+// スペードトランプカード一覧
+Map _spadeTrumps = {
   'images/trumps/card_spade_01.png': 1,
   'images/trumps/card_spade_02.png': 2,
   'images/trumps/card_spade_03.png': 3,
@@ -14,7 +24,8 @@ const spadeTrumps = {
   'images/trumps/card_spade_13.png': 13,
 };
 
-const heartTrumps = {
+// ハートトランプカード一覧
+Map _heartTrumps = {
   'images/trumps/card_heart_01.png': 1,
   'images/trumps/card_heart_02.png': 2,
   'images/trumps/card_heart_03.png': 3,
@@ -30,7 +41,8 @@ const heartTrumps = {
   'images/trumps/card_heart_13.png': 13,
 };
 
-const diamondTrumps = {
+// ダイヤモンドトランプカード一覧
+Map _diamondTrumps = {
   'images/trumps/card_diamond_01.png': 1,
   'images/trumps/card_diamond_02.png': 2,
   'images/trumps/card_diamond_03.png': 3,
@@ -46,7 +58,8 @@ const diamondTrumps = {
   'images/trumps/card_diamond_13.png': 13,
 };
 
-const cloverTrumps = {
+// クローバートランプカード一覧
+Map _cloverTrumps = {
   'images/trumps/card_clover_01.png': 1,
   'images/trumps/card_clover_02.png': 2,
   'images/trumps/card_clover_03.png': 3,
@@ -62,13 +75,39 @@ const cloverTrumps = {
   'images/trumps/card_clover_13.png': 13,
 };
 
-// トランプマークと値のオブジェクト
-const allTrumps = {
-  ...spadeTrumps,
-  ...heartTrumps,
-  ...cloverTrumps,
-  ...diamondTrumps
+// ジョーカートランプカード一覧
+Map _jokerTrumps = {'images/trumps/card_joker.png': 0};
+
+// 裏面トランプカード一覧
+Map _backTrumps = {'images/trumps/card_back.png': 0};
+
+// 裏面カードを除くトランプマークと値のオブジェクト
+Map _allTrumpsExceptBack = {
+  ..._spadeTrumps,
+  ..._heartTrumps,
+  ..._cloverTrumps,
+  ..._diamondTrumps,
 };
 
-// トランプマークの配列
-var allTrumpsMarks = allTrumps.keys.toList();
+// 裏面カードを除くトランプマークの配列
+List _allTrumpMarksExceptBack = _allTrumpsExceptBack.keys.toList();
+List _randomAllTrumpMarksExceptBack = _shuffle(_allTrumpMarksExceptBack);
+
+// List に Map の Key を追加する
+List _addMapKeysToList(List list, Map map) {
+  List originList = list;
+  originList.addAll(map.keys.toList());
+  return originList;
+}
+
+// List 要素をランダムにシャッフル
+List _shuffle(List items) {
+  var random = Random();
+  for (var i = items.length - 1; i > 0; i--) {
+    var j = random.nextInt(i + 1);
+    var tmp = items[i];
+    items[i] = items[j];
+    items[j] = tmp;
+  }
+  return items;
+}

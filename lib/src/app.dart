@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:study_app/src/screens/game.dart';
 import 'package:study_app/src/screens/home.dart';
@@ -36,6 +35,13 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  static const _screens = [
+    HomeScreeen(),
+    SubjectScreeen(),
+    LoadmapScreeen(),
+    GameScreeen(),
+    SettingsScreeen()
+  ];
   int _selectedIndex = 3;
   // int _selectedIndex = 0;
 
@@ -47,72 +53,40 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "ホーム",
-              tooltip: "ホームページ",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: "教科",
-              tooltip: "教科ページ",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: "ロードマップ",
-              tooltip: "ロードマップページ",
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.sports_esports),
-                label: "ミニゲーム",
-                tooltip: "ミニゲームページ"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '設定',
-              tooltip: "設定ページ",
-            ),
-          ],
-          onTap: _onItemTapped, // 無くても動く
-          currentIndex: _selectedIndex, // 無くても動く
-        ),
-        tabBuilder: (BuildContext context, int index) {
-          return CupertinoTabView(builder: (context) {
-            switch (index) {
-              case 0:
-                // ホームページ
-                return const CupertinoPageScaffold(
-                  child: HomeScreeen(),
-                );
-              case 1:
-                // 教科ページ
-                return const CupertinoPageScaffold(
-                  child: SubjectScreeen(),
-                );
-              case 2:
-                // ロードマップページ
-                return const CupertinoPageScaffold(
-                  child: LoadmapScreeen(),
-                );
-              case 3:
-                // ミニゲームページ
-                return const CupertinoPageScaffold(
-                  child: GameScreeen(),
-                );
-              case 4:
-                // 設定ページ
-                return const CupertinoPageScaffold(
-                  child: SettingsScreeen(),
-                );
-              default:
-                // デフォルトはホームページ
-                return const CupertinoPageScaffold(
-                  child: HomeScreeen(),
-                );
-            }
-          });
-        });
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "ホーム",
+            tooltip: "ホームページ",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: "教科",
+            tooltip: "教科ページ",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: "ロードマップ",
+            tooltip: "ロードマップページ",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: "ミニゲーム",
+            tooltip: "ミニゲームページ",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: '設定',
+            tooltip: "設定ページ",
+          ),
+        ],
+        type: BottomNavigationBarType.fixed,
+      ),
+    );
   }
 }

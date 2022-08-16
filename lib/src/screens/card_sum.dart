@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:study_app/src/utils/countdown_timer.dart';
+import 'package:study_app/src/utils/playing_timer.dart';
 import 'package:study_app/src/utils/trumps.dart';
 
 class CardSumScreeen extends StatefulWidget {
@@ -27,6 +29,8 @@ class _CardSumScreenState extends State<CardSumScreeen> {
       body: Center(
         child: Column(
           children: <Widget>[
+            const PlayingTimer(),
+            const CountDownTimer(start: 3),
             Image.asset(randomAllTrumpMarks[counter]),
             counter < randomAllTrumpMarks.length - 1
                 // トランプの配列が 52 枚まで達していないとき

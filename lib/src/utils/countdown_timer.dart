@@ -12,7 +12,7 @@ class CountDownTimer extends StatefulWidget {
 class _CountDownTimerState extends State<CountDownTimer> {
   // カウントダウンを示すインスタンス変数
   int _start = 10;
-  int _current = 10;
+  String _current = "10";
   CountdownTimer _countdownTimer = CountdownTimer(
     const Duration(seconds: 10),
     const Duration(seconds: 1),
@@ -22,7 +22,7 @@ class _CountDownTimerState extends State<CountDownTimer> {
   void initState() {
     // 初期化
     _start = widget.start;
-    _current = widget.start;
+    _current = widget.start.toString();
     _countDownTimer();
     super.initState();
   }
@@ -43,19 +43,19 @@ class _CountDownTimerState extends State<CountDownTimer> {
     var sub = _countdownTimer.listen(null);
     sub.onData((duration) {
       setState(() {
-        _current = _start - duration.elapsed.inSeconds; // 毎秒減らしていく
+        _current = (_start - duration.elapsed.inSeconds).toString(); // 毎秒減らしていく
       });
     });
 
     // 終了時の処理
     sub.onDone(() {
       sub.cancel();
-      // _current = widget.start;
+      _current = "スタート!!";
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("$_current秒"));
+    return Center(child: Text(_current));
   }
 }

@@ -42,7 +42,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     GameScreeen(),
     SettingsScreeen()
   ];
-  int _selectedIndex = 3;
+  int _selectedIndex = 1;
   // int _selectedIndex = 0;
 
   void _onItemTapped(int index) {

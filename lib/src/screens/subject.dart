@@ -8,40 +8,42 @@ List<String> subjects = [
   "社会",
 ];
 
-List<String> japaneseUnits = [
-  "AAAAA",
-  "AAAAA",
-  "AAAAA",
-  "AAAAA",
-  "AAAAA",
-];
-List<String> mathUnits = [
-  "BBBBB",
-  "BBBBB",
-  "BBBBB",
-  "BBBBB",
-  "BBBBB",
-];
-List<String> englishUnits = [
-  "CCCCC",
-  "CCCCC",
-  "CCCCC",
-  "CCCCC",
-  "CCCCC",
-];
-List<String> scienceUnits = [
-  "DDDDD",
-  "DDDDD",
-  "DDDDD",
-  "DDDDD",
-  "DDDDD",
-];
-List<String> socialUnits = [
-  "EEEEE",
-  "EEEEE",
-  "EEEEE",
-  "EEEEE",
-  "EEEEE",
+List<List<String>> units = [
+  [
+    "AAAAA",
+    "AAAAA",
+    "AAAAA",
+    "AAAAA",
+    "AAAAA",
+  ],
+  [
+    "BBBBB",
+    "BBBBB",
+    "BBBBB",
+    "BBBBB",
+    "BBBBB",
+  ],
+  [
+    "CCCCC",
+    "CCCCC",
+    "CCCCC",
+    "CCCCC",
+    "CCCCC",
+  ],
+  [
+    "DDDDD",
+    "DDDDD",
+    "DDDDD",
+    "DDDDD",
+    "DDDDD",
+  ],
+  [
+    "EEEEE",
+    "EEEEE",
+    "EEEEE",
+    "EEEEE",
+    "EEEEE",
+  ],
 ];
 
 class SubjectScreeen extends StatelessWidget {
@@ -53,7 +55,9 @@ class SubjectScreeen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(title: const Text("教科選択")),
-        body: Column(children: contentWidgets));
+        body: SingleChildScrollView(
+          child: Column(children: contentWidgets),
+        ));
   }
 }
 
@@ -61,23 +65,27 @@ List<Widget> _makeWidgets(BuildContext context) {
   var contentWidgets = <Widget>[];
 
   contentWidgets.add(const Text('勉強したい教科を選んでね。'));
-  for (final subject in subjects) {
-    contentWidgets.add(
-        ExpansionTile(title: Text(subject.toString()), children: [])
-
-        // SizedBox(
-        //   width: double.infinity, //横幅
-        //   height: 50, //高さ
-        //   child: ElevatedButton(
-        //     onPressed: () {
+  subjects.asMap().forEach((int i, String subject) {
+    List<Widget> widgetUnit = [];
+    for (var unit in units[i]) {
+      // ListTile でタイルを作成
+      widgetUnit.add(ListTile(
+        title: Text(unit),
+        subtitle: const Text("サブタイトル"),
+        leading: const Icon(Icons.school),
+        onTap: () {},
+        // onTap: () {
         //       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         //         return UnitScreen(subject: subject);
         //       }));
         //     },
-        //     child: Text(subject.toString()),
-        //   ),
-        // ),
-        );
-  }
+        onLongPress: () {},
+        trailing: const Icon(Icons.note),
+        // tileColor: Colors.white,
+      ));
+    }
+    contentWidgets.add(
+        ExpansionTile(title: Text(subject.toString()), children: widgetUnit));
+  });
   return contentWidgets;
 }

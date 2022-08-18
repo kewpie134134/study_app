@@ -8,9 +8,39 @@ class UnitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(unit)),
-      body: const Center(
-        child: Text("勉強するテーマの説明", style: TextStyle(fontSize: 32.0)),
-      ),
+      body: Card(
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.arrow_drop_down_circle),
+                title: Text(unit),
+                subtitle: Text(
+                  "サブタイトル",
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.6),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                    "説明書き？XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                    style: TextStyle(color: Colors.black.withOpacity(0.6))),
+              ),
+              ButtonBar(
+                alignment: MainAxisAlignment.start,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("選択画面に戻る")),
+                  TextButton(onPressed: () {}, child: const Text("学習を開始する"))
+                ],
+              )
+            ],
+          )),
     );
   }
 }

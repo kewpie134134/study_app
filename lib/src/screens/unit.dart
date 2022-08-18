@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_app/src/screens/studying.dart';
 
 class UnitScreen extends StatelessWidget {
   const UnitScreen({Key? key, required this.unit}) : super(key: key);
@@ -36,7 +37,15 @@ class UnitScreen extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       child: const Text("選択画面に戻る")),
-                  TextButton(onPressed: () {}, child: const Text("学習を開始する"))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            return const StudyingScreeen();
+                          },
+                        ));
+                      },
+                      child: const Text("学習を開始する"))
                 ],
               )
             ],

@@ -19,7 +19,7 @@ class QuestionView extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Center(
           child: Text(
-            questions[questionIndex]["question"] as String,
+            questions[questionIndex]["question"].toString(),
             style: const TextStyle(fontSize: 20),
           ),
         ),

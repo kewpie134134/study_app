@@ -15,6 +15,9 @@ class _StudyingScreenState extends State<StudyingScreeen> {
   /// 問題文の index
   var _questionIndex = 0;
 
+  /// 正当数
+  var _correctAnswerCount = 0;
+
   /// 問題
   final _questions = [
     {
@@ -39,13 +42,20 @@ class _StudyingScreenState extends State<StudyingScreeen> {
 
   void _onPressedAnswerButton() {
     setState(() {
-      _questionIndex++;
+      _questionIndex += 1;
     });
   }
 
   void _onPressedResetButton() {
     setState(() {
       _questionIndex = 0;
+      _correctAnswerCount = 0;
+    });
+  }
+
+  void _incrementCorrectIndex() {
+    setState(() {
+      _correctAnswerCount += 1;
     });
   }
 
@@ -91,29 +101,37 @@ class _StudyingScreenState extends State<StudyingScreeen> {
                         AnswerButton(
                             questionIndex: _questionIndex,
                             questions: _questions,
-                            answerQuestion: _onPressedAnswerButton,
+                            onPressedAnswerButton: _onPressedAnswerButton,
+                            incrementCorrect: _incrementCorrectIndex,
                             keyString: "a"),
                         AnswerButton(
                             questionIndex: _questionIndex,
                             questions: _questions,
-                            answerQuestion: _onPressedAnswerButton,
+                            onPressedAnswerButton: _onPressedAnswerButton,
+                            incrementCorrect: _incrementCorrectIndex,
                             keyString: "b"),
                         AnswerButton(
                             questionIndex: _questionIndex,
                             questions: _questions,
-                            answerQuestion: _onPressedAnswerButton,
+                            onPressedAnswerButton: _onPressedAnswerButton,
+                            incrementCorrect: _incrementCorrectIndex,
                             keyString: "c"),
                         AnswerButton(
                             questionIndex: _questionIndex,
                             questions: _questions,
-                            answerQuestion: _onPressedAnswerButton,
+                            onPressedAnswerButton: _onPressedAnswerButton,
+                            incrementCorrect: _incrementCorrectIndex,
                             keyString: "d"),
                       ],
                     ),
                   )),
                 ],
               )
-            : ResultScreen(tapResetButton: _onPressedResetButton),
+            : ResultScreen(
+                tapResetButton: _onPressedResetButton,
+                questionCount: _questions.length,
+                correctAnswerCount: _correctAnswerCount,
+              ),
       ),
     );
   }

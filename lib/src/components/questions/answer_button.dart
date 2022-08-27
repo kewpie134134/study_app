@@ -7,13 +7,15 @@ class AnswerButton extends StatelessWidget {
       {Key? key,
       required this.questionIndex,
       required this.questions,
-      required this.answerQuestion,
+      required this.onPressedAnswerButton,
+      required this.incrementCorrect,
       required this.keyString})
       : super(key: key);
 
   final int questionIndex;
   final List<Map<String, Object>> questions;
-  final void Function() answerQuestion;
+  final void Function() onPressedAnswerButton;
+  final void Function() incrementCorrect;
   final String keyString;
 
   @override
@@ -24,7 +26,14 @@ class AnswerButton extends StatelessWidget {
         width: double.infinity,
         height: Constants().answerButtonHeight,
         child: ElevatedButton(
-          onPressed: answerQuestion,
+          onPressed: () {
+            /// "b".toUpperCase() == "D" みたいなイメージ
+            if (keyString.toUpperCase() ==
+                questions[questionIndex]["correctAnswer"].toString()) {
+              incrementCorrect();
+            }
+            onPressedAnswerButton();
+          },
           style: ElevatedButton.styleFrom(
             primary: HexColor("#D6D7D7"),
           ),

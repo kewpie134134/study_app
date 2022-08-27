@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:study_app/src/utils/hex_color.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen(
-      {Key? key,
-      required this.tapResetButton,
-      required this.questionCount,
-      required this.correctAnswerCount})
-      : super(key: key);
+  const ResultScreen({
+    Key? key,
+    required this.onPressedResetButton,
+    required this.onPressedBackToUnitPageButton,
+    required this.questionCount,
+    required this.correctAnswerCount,
+  }) : super(key: key);
 
-  /// タップ時の処理
-  final void Function() tapResetButton;
+  /// 選択時の処理
+  final void Function() onPressedResetButton;
+
+  /// 問題説明画面へ戻るボタン
+  final void Function() onPressedBackToUnitPageButton;
 
   /// 全問台数
   final int questionCount;
@@ -43,13 +47,27 @@ class ResultScreen extends StatelessWidget {
             height: 50,
             width: MediaQuery.of(context).size.width - 100,
             child: ElevatedButton(
-              onPressed: tapResetButton,
+              onPressed: onPressedResetButton,
               style: ElevatedButton.styleFrom(
                 primary: HexColor("#6DDE00"),
               ),
               child: const Text(
                 "リセットする",
                 style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: SizedBox(
+            height: 50,
+            width: MediaQuery.of(context).size.width - 100,
+            child: ElevatedButton(
+              onPressed: onPressedBackToUnitPageButton,
+              child: const Text(
+                "問題説明画面へ戻る",
+                style: TextStyle(fontSize: 17),
               ),
             ),
           ),

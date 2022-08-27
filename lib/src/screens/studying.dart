@@ -53,6 +53,10 @@ class _StudyingScreenState extends State<StudyingScreeen> {
     });
   }
 
+  void _onPressedBackToUnitPageButton() {
+    Navigator.of(context).pop();
+  }
+
   void _incrementCorrectIndex() {
     setState(() {
       _correctAnswerCount += 1;
@@ -128,7 +132,8 @@ class _StudyingScreenState extends State<StudyingScreeen> {
                 ],
               )
             : ResultScreen(
-                tapResetButton: _onPressedResetButton,
+                onPressedResetButton: _onPressedResetButton,
+                onPressedBackToUnitPageButton: _onPressedBackToUnitPageButton,
                 questionCount: _questions.length,
                 correctAnswerCount: _correctAnswerCount,
               ),

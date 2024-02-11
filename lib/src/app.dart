@@ -40,11 +40,11 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const _screens = [
-    HomeScreeen(),
-    SubjectScreeen(),
-    LoadmapScreeen(),
-    GameScreeen(),
-    SettingsScreeen()
+    HomeScreeen(), // ホーム画面
+    SubjectScreeen(), // 教科画面
+    LoadmapScreeen(), // ロードマップ画面
+    GameScreeen(), // ミニゲーム画面
+    SettingsScreeen() // 設定画面
   ];
   int _selectedIndex = 1;
   // int _selectedIndex = 0;

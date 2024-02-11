@@ -49,7 +49,7 @@ class ResultScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: onPressedResetButton,
               style: ElevatedButton.styleFrom(
-                primary: HexColor("#6DDE00"),
+                backgroundColor: HexColor("#6DDE00"),
               ),
               child: const Text(
                 "リセットする",

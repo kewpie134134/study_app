@@ -35,7 +35,7 @@ class AnswerButton extends StatelessWidget {
             onPressedAnswerButton();
           },
           style: ElevatedButton.styleFrom(
-            primary: HexColor("#D6D7D7"),
+            backgroundColor: HexColor("#D6D7D7"),
           ),
           child: Text(
             questions[questionIndex][keyString] as String,

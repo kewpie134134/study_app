@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_app/src/screens/loadmapDetail.dart';
 
 /// ロードマップの要素数
 const int loadmapLength = 23;
@@ -14,28 +15,61 @@ List<Widget> _makeWidgets(
     for (int i = 0; i < list.length; i++) {
       if (list[i] == loadmapLength + 1) {
         /// Goal の場合、コンテンツの色を変えて矢印は追加しない
-        tmpWidgets.add(Container(
-            decoration:
-                const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-            width: containerSize,
-            height: containerSize));
+        tmpWidgets.add(MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return LoadmapDetailScreen(
+                    loadmapDetail: list[i].toString()); // ほんとは動的に変更したい
+              }));
+            },
+            child: Container(
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.red),
+                width: containerSize,
+                height: containerSize),
+          ),
+        ));
       } else if (list[i] == 0) {
         /// Start の場合、コンテンツの色を変えて矢印は追加しない
-        tmpWidgets.add(Container(
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: Colors.green),
-            width: containerSize,
-            height: containerSize));
+        tmpWidgets.add(MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return LoadmapDetailScreen(
+                      loadmapDetail: list[i].toString()); // ほんとは動的に変更したい
+                }));
+              },
+              child: Container(
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.green),
+                  width: containerSize,
+                  height: containerSize),
+            )));
         tmpWidgets.add(Icon(
           Icons.arrow_forward,
           size: containerSize,
         ));
       } else {
-        tmpWidgets.add(Container(
-            decoration:
-                const BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-            width: containerSize,
-            height: containerSize));
+        tmpWidgets.add(MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return LoadmapDetailScreen(
+                    loadmapDetail: list[i].toString()); // ほんとは動的に変更したい
+              }));
+            },
+            child: Container(
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.blue),
+                width: containerSize,
+                height: containerSize),
+          ),
+        ));
         tmpWidgets.add(Icon(
           Icons.arrow_forward,
           size: containerSize,
@@ -89,346 +123,7 @@ class LoadmapScreeen extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
               children: _makeWidgets(
-                  context, loadmapList(loadmapLength), containerSize)
-              // Row(
-              //   children: <Widget>[
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //   ],
-              // ),
-              // Row(children: <Widget>[
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //   )
-              // ]),
-              // Row(
-              //   children: <Widget>[
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //   ],
-              // ),
-              // Row(children: <Widget>[
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black,
-              //   ),
-              // ]),
-              // Row(
-              //   children: <Widget>[
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //   ],
-              // ),
-              // Row(children: <Widget>[
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //   )
-              // ]),
-              // Row(
-              //   children: <Widget>[
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_back,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //   ],
-              // ),
-              // Row(children: <Widget>[
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black,
-              //   ),
-              // ]),
-              // Row(
-              //   children: <Widget>[
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.red),
-              //         width: containerSize,
-              //         height: containerSize),
-              //     Icon(
-              //       Icons.arrow_forward,
-              //       size: containerSize,
-              //     ),
-              //     Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.blue),
-              //         width: containerSize,
-              //         height: containerSize),
-              //   ],
-              // ),
-              // Row(children: <Widget>[
-              //   Icon(
-              //     Icons.arrow_upward,
-              //     size: containerSize,
-              //     color: Colors.black.withOpacity(0),
-              //   ),
-              // ]),
-              )),
+                  context, loadmapList(loadmapLength), containerSize))),
     );
   }
 }

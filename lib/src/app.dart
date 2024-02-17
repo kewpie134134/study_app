@@ -46,7 +46,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     GameScreeen(), // ミニゲーム画面
     SettingsScreeen() // 設定画面
   ];
-  int _selectedIndex = 1;
+  int _selectedIndex = 2;
   // int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
